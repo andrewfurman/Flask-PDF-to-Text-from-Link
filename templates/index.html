@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Link Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>PDF Link Analyzer</h1>
+    <form id="pdf-form">
+        <label for="pdf-link">Enter PDF Link:</label>
+        <input type="url" id="pdf-link" name="pdf-link" required>
+        <button type="submit">Process PDF</button>
+
+        <label for="output">Output:</label>
+        <textarea id="output" name="output" readonly></textarea>
+    </form>
+
+    <script>
+        document.getElementById('pdf-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pdfUrl = document.getElementById('pdf-link').value;
+            const outputArea = document.getElementById('output');
+
+            outputArea.value = 'Processing...';
+
+            fetch('/process_pdf', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({pdf_url: pdfUrl}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                outputArea.value = data.text;
+            })
+            .catch((error) => {
+                outputArea.value = 'Error: ' + error;
+            });
+        });
+    </script>
+</body>
+</html>
