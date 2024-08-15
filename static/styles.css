@@ -1,28 +1,76 @@
-body {
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
     padding: 20px;
+    box-sizing: border-box;
 }
 
-h1 {
-    text-align: center;
+#pdf-form {
+    margin-bottom: 20px;
 }
 
-form {
+.input-container {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.input-container label {
+    flex: 0 0 120px;
+    line-height: 30px;
+}
+
+#pdf-link {
+    flex: 1;
+    height: 30px;
+}
+
+#process-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#process-button:hover {
+    background-color: #45a049;
+}
+
+.output-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
 
-label {
-    margin-top: 10px;
+.output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-input, textarea {
-    margin-top: 5px;
-    padding: 5px;
+#copy-button {
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
 }
 
-textarea {
-    height: 200px;
+#copy-button:hover {
+    background-color: #e0e0e0;
+}
+
+#output {
+    flex: 1;
+    width: 100%;
+    resize: none;
 }

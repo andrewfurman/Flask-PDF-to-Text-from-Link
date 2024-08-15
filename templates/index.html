@@ -7,15 +7,23 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>PDF Link Analyzer</h1>
-    <form id="pdf-form">
-        <label for="pdf-link">Enter PDF Link:</label>
-        <input type="url" id="pdf-link" name="pdf-link" required value="https://admin.ks.gov/media/cms/Sunflower_79478c95a0e0a.pdf">
-        <button type="submit">Process PDF</button>
-
-        <label for="output">Output:</label>
-        <textarea id="output" name="output" readonly></textarea>
-    </form>
+    <div class="container">
+        <form id="pdf-form">
+            <div class="input-container">
+                <label for="pdf-link">Enter PDF Link:</label>
+                <input type="url" id="pdf-link" name="pdf-link" required value="https://www.medicare.gov/Pubs/pdf/12026-Understanding-Medicare-Advantage-Plans.pdf">
+            </div>
+            <button type="submit" id="process-button">Process PDF</button>
+        </form>
+        
+        <div class="output-container">
+            <div class="output-header">
+                <label for="output">Output:</label>
+                <button id="copy-button" type="button">Copy</button>
+            </div>
+            <textarea id="output" name="output" readonly></textarea>
+        </div>
+    </div>
 
     <script>
         document.getElementById('pdf-form').addEventListener('submit', function(e) {
@@ -39,6 +47,13 @@
             .catch((error) => {
                 outputArea.value = 'Error: ' + error;
             });
+        });
+
+        document.getElementById('copy-button').addEventListener('click', function() {
+            const outputArea = document.getElementById('output');
+            outputArea.select();
+            document.execCommand('copy');
+            alert('Copied to clipboard!');
         });
     </script>
 </body>
