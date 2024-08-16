@@ -3,6 +3,8 @@ body, html {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
 }
 
 .container {
@@ -11,10 +13,17 @@ body, html {
     height: 100vh;
     padding: 20px;
     box-sizing: border-box;
+    max-width: 1200px; /* Increased max-width */
+    width: 95%; /* Use percentage width */
+    margin: 0 auto;
 }
 
 #pdf-form {
     margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .input-container {
@@ -25,11 +34,15 @@ body, html {
 .input-container label {
     flex: 0 0 120px;
     line-height: 30px;
+    font-weight: bold;
 }
 
 #pdf-link {
     flex: 1;
     height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0 10px;
 }
 
 #process-button {
@@ -39,6 +52,9 @@ body, html {
     color: white;
     border: none;
     cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s;
 }
 
 #process-button:hover {
@@ -49,6 +65,10 @@ body, html {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .output-header {
@@ -58,11 +78,17 @@ body, html {
     margin-bottom: 10px;
 }
 
+.output-header label {
+    font-weight: bold;
+}
+
 #copy-button {
     padding: 5px 10px;
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
 }
 
 #copy-button:hover {
@@ -73,6 +99,12 @@ body, html {
     flex: 1;
     width: 100%;
     resize: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 .copy-indicator {
@@ -90,4 +122,12 @@ body, html {
 
 .copy-indicator.show {
     opacity: 1;
+}
+
+/* Media query for larger screens */
+@media screen and (min-width: 1200px) {
+    .container {
+        max-width: none;
+        width: 98%;
+    }
 }
