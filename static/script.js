@@ -2,18 +2,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const outputArea = document.getElementById('output');
     const wordCountElement = document.getElementById('word-count');
     const tokenCountElement = document.getElementById('token-count');
+    const pdfLinkInput = document.getElementById('pdf-link');
+    let firstFocus = true;
 
     function updateCounts() {
         const text = outputArea.value.trim();
         const wordCount = text ? text.split(/\s+/).length : 0;
         const tokenCount = Math.round(wordCount * 0.75);
-        wordCountElement.textContent = `Word count: ${wordCount}`;
-        tokenCountElement.textContent = `Token count: ${tokenCount}`;
+        wordCountElement.textContent = `🆎 Words: ${wordCount}`;
+        tokenCountElement.textContent = `🪙 Tokens: ${tokenCount}`;
     }
 
     document.getElementById('pdf-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        const pdfUrl = document.getElementById('pdf-link').value;
+        const pdfUrl = pdfLinkInput.value;
 
         outputArea.value = 'Processing...';
         updateCounts();
@@ -47,9 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 2000);
     });
 
-    // Add event listener for input changes
     outputArea.addEventListener('input', updateCounts);
 
-    // Initial counts update
     updateCounts();
+
+    pdfLinkInput.addEventListener('focus', async () => {
+        if (firstFocus) {
+            firstFocus = false;
+            pdfLinkInput.value = '';
+
+            try {
+                const text = await navigator.clipboard.readText();
+                if (text) {
+                    pdfLinkInput.value = text;
+                }
+            } catch (err) {
+                console.error('Failed to read clipboard contents: ', err);
+            }
+        }
+    });
 });

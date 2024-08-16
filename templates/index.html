@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Link Analyzer</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PDF Link Analyzer</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    </head>
 <body>
     <div class="container">
         <form id="pdf-form">
             <div class="input-container">
-                <label for="pdf-link">Enter PDF Link:</label>
+                <label for="pdf-link">Enter PDF Link:  </label>
                 <input type="url" id="pdf-link" name="pdf-link" required value="https://www.medicare.gov/Pubs/pdf/12026-Understanding-Medicare-Advantage-Plans.pdf">
             </div>
-            <button type="submit" id="process-button">Process PDF</button>
+            <button type="submit" id="process-button">⚙️ Process PDF</button>
         </form>
         <div class="output-container">
             <div class="output-header">
                 <label for="output">Output:</label>
                 <div class="right-controls">
-                    <span id="word-count">Word count: 0</span>
-                    <span id="token-count">Token count: 0</span>
-                    <button id="copy-button" type="button">Copy</button>
+                    <span id="word-count">🆎 Words: 0</span>
+                    <span id="token-count">🪙 Tokens: 0</span>
+                    <button id="copy-button" type="button">📋 Copy</button>
                 </div>
             </div>
             <textarea id="output" name="output" readonly></textarea>
