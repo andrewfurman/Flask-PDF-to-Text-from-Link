@@ -15,11 +15,14 @@
             </div>
             <button type="submit" id="process-button">Process PDF</button>
         </form>
-        
         <div class="output-container">
             <div class="output-header">
                 <label for="output">Output:</label>
-                <button id="copy-button" type="button">Copy</button>
+                <div class="right-controls">
+                    <span id="word-count">Word count: 0</span>
+                    <span id="token-count">Token count: 0</span>
+                    <button id="copy-button" type="button">Copy</button>
+                </div>
             </div>
             <textarea id="output" name="output" readonly></textarea>
         </div>
