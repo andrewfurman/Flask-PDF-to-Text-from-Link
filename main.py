@@ -1,5 +1,7 @@
+# main.py
+
 from flask import Flask, render_template, request, jsonify, send_from_directory
-from pdf_processor import get_url_text
+from getPdfUrl import get_url_text
 
 app = Flask(__name__, static_folder='static')
 
