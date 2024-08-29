@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let firstFocus = true;
 
     function updateCounts() {
-        const text = outputArea.value.trim();
+        const text = outputArea.textContent.trim();
         const wordCount = text ? text.split(/\s+/).length : 0;
         const tokenCount = Math.round(wordCount * 0.75);
         wordCountElement.textContent = `🆎 Words: ${wordCount}`;
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault();
         const pdfUrl = pdfLinkInput.value;
 
-        outputArea.value = 'Processing...';
+        outputArea.innerHTML = 'Processing...';
         updateCounts();
 
         fetch('/process_pdf', {
@@ -29,18 +29,25 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            outputArea.value = data.text;
+            // Preserve newlines by replacing them with <br> tags
+            const formattedText = data.text.replace(/\n/g, '<br>');
+            outputArea.innerHTML = formattedText;
             updateCounts();
         })
         .catch((error) => {
-            outputArea.value = 'Error: ' + error;
+            outputArea.textContent = 'Error: ' + error;
             updateCounts();
         });
     });
 
     document.getElementById('copy-button').addEventListener('click', function() {
-        outputArea.select();
+        const range = document.createRange();
+        range.selectNodeContents(outputArea);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
         document.execCommand('copy');
+        selection.removeAllRanges();
 
         const indicator = document.getElementById('copy-indicator');
         indicator.classList.add('show');

@@ -127,6 +127,8 @@ body, html {
     font-size: 14px;
     line-height: 1.4;
     box-sizing: border-box;
+    white-space: nowrap;
+    overflow-x: auto;
 }
 
 /* Copy indicator styles */
@@ -153,4 +155,46 @@ body, html {
         max-width: none;
         width: 98%;
     }
+}
+
+/* Additional styles for formatted markdown */
+.formatted-output {
+    flex: 1;
+    width: 100%;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow-x: auto;
+    background-color: #fff;
+}
+
+/* New styles for tables */
+.formatted-output table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+.formatted-output th,
+.formatted-output td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.formatted-output th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.formatted-output tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.formatted-output tr:hover {
+    background-color: #f5f5f5;
 }
