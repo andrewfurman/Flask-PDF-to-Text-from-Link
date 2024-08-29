@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const wordCountElement = document.getElementById('word-count');
     const tokenCountElement = document.getElementById('token-count');
     const pdfLinkInput = document.getElementById('pdf-link');
+    const pdfFileInput = document.getElementById('pdf-file');
+    const clearFileButton = document.getElementById('clear-file');
     let firstFocus = true;
 
     function updateCounts() {
@@ -13,23 +15,44 @@ document.addEventListener('DOMContentLoaded', function() {
         tokenCountElement.textContent = `🪙 Tokens: ${tokenCount}`;
     }
 
+    clearFileButton.addEventListener('click', function() {
+        pdfFileInput.value = '';
+        pdfLinkInput.disabled = false;
+    });
+
+    pdfFileInput.addEventListener('change', function() {
+        if (pdfFileInput.value) {
+            pdfLinkInput.disabled = true;
+        } else {
+            pdfLinkInput.disabled = false;
+        }
+    });
+
     document.getElementById('pdf-form').addEventListener('submit', function(e) {
         e.preventDefault();
         const pdfUrl = pdfLinkInput.value;
+        const pdfFile = pdfFileInput.files[0];
 
         outputArea.innerHTML = 'Processing...';
         updateCounts();
 
+        let formData = new FormData();
+        if (pdfFile) {
+            formData.append('pdf_file', pdfFile);
+        } else if (pdfUrl) {
+            formData.append('pdf_url', pdfUrl);
+        } else {
+            outputArea.textContent = 'Error: Please provide either a PDF URL or upload a PDF file.';
+            updateCounts();
+            return;
+        }
+
         fetch('/process_pdf', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({pdf_url: pdfUrl}),
+            body: formData,
         })
         .then(response => response.json())
         .then(data => {
-            // Preserve newlines by replacing them with <br> tags
             const formattedText = data.text.replace(/\n/g, '<br>');
             outputArea.innerHTML = formattedText;
             updateCounts();

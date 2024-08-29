@@ -3,16 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PDF Link Analyzer</title>
+        <title>PDF Analyzer</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
         <link rel="icon" href="/static/cube.svg" type="image/x-icon">
     </head>
 <body>
     <div class="container">
-        <form id="pdf-form">
+        <form id="pdf-form" enctype="multipart/form-data">
             <div class="input-container">
                 <label for="pdf-link">Enter PDF Link:  </label>
-                <input type="url" id="pdf-link" name="pdf-link" required value="https://www.cms.gov/outreach-and-education/american-indian-alaska-native/aian/outreach-and-education/pdf/cms4_medicare_part_ab_factsheet_909523-n.pdf">
+                <input type="url" id="pdf-link" name="pdf-link" value="https://www.cms.gov/outreach-and-education/american-indian-alaska-native/aian/outreach-and-education/pdf/cms4_medicare_part_ab_factsheet_909523-n.pdf">
+            </div>
+            <div class="input-container">
+                <label for="pdf-file">Or Upload PDF:  </label>
+                <input type="file" id="pdf-file" name="pdf-file" accept=".pdf">
+                <button type="button" id="clear-file">Clear</button>
             </div>
             <button type="submit" id="process-button">⚙️ Process PDF</button>
         </form>
