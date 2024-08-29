@@ -1,5 +1,4 @@
 # pdf_processor.py
-
 import io
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
@@ -13,10 +12,16 @@ def extract_text_from_pdf(pdf_file):
     device = TextConverter(resource_manager, output_string, laparams=laparams)
     interpreter = PDFPageInterpreter(resource_manager, device)
 
-    for page in PDFPage.get_pages(pdf_file, check_extractable=True):
-        interpreter.process_page(page)
+    text = ""
+    for page_num, page in enumerate(PDFPage.get_pages(pdf_file, check_extractable=True), 1):
+        output_string.seek(0)
+        output_string.truncate(0)
 
-    text = output_string.getvalue()
+        interpreter.process_page(page)
+        page_text = output_string.getvalue()
+
+        page_marker = f"\n\n🅿️ Start Page {page_num}\n\n"
+        text += page_marker + page_text
 
     device.close()
     output_string.close()
