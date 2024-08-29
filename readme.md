@@ -21,4 +21,4 @@ The `pdf_processor.py` file contains a function `extract_text_from_pdf_url(pdf_u
 
 This project is open-source and available under the MIT License.
 
-Default PDF Link: https://www.medicare.gov/Pubs/pdf/12026-Understanding-Medicare-Advantage-Plans.pdf
+Default PDF Link: https://www.cms.gov/outreach-and-education/american-indian-alaska-native/aian/outreach-and-education/pdf/cms4_medicare_part_ab_factsheet_909523-n.pdf

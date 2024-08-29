@@ -1,5 +1,6 @@
 # pdf_processor.py
 import io
+import re
 from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
@@ -20,7 +21,11 @@ def extract_text_from_pdf(pdf_file):
         interpreter.process_page(page)
         page_text = output_string.getvalue()
 
-        page_marker = f"\n\n🅿️ Start Page {page_num}\n\n"
+        # Remove multiple blank lines, keeping only single blank lines
+        page_text = re.sub(r'\n{3,}', '\n\n', page_text)
+
+        # Add Page number at the start of each page
+        page_marker = f"🅿️ Start Page {page_num} - "
         text += page_marker + page_text
 
     device.close()
