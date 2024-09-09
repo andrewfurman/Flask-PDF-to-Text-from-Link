@@ -73,6 +73,7 @@ body, html {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+    overflow: hidden; /* Hide overflow on the container */
 }
 
 .output-header {
@@ -118,17 +119,7 @@ body, html {
 
 #output {
     flex: 1;
-    width: 100%;
-    resize: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 14px;
-    line-height: 1.4;
-    box-sizing: border-box;
-    white-space: nowrap;
-    overflow-x: auto;
+    min-height: 0; /* Allow the div to shrink */
 }
 
 /* Copy indicator styles */
@@ -162,14 +153,16 @@ body, html {
     flex: 1;
     width: 100%;
     padding: 10px;
-    font-family: Arial, sans-serif;
+    font-family: Consolas, Monaco, 'Courier New', monospace;
     font-size: 14px;
     line-height: 1.4;
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 4px;
-    overflow-x: auto;
     background-color: #fff;
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: auto; /* Enable vertical scrolling if needed */
 }
 
 /* New styles for tables */

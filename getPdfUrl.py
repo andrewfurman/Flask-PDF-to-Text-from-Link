@@ -1,24 +1,21 @@
 # getPdfUrl.py
-
-import io
 import requests
+import io
 from pdf_processor import extract_text_from_pdf
-
-def download_pdf(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        content_type = response.headers.get('Content-Type', '').lower()
-        if 'application/pdf' not in content_type:
-            raise ValueError(f"URL does not point to a PDF. Content-Type: {content_type}")
-        return io.BytesIO(response.content)
-    except requests.RequestException as e:
-        raise Exception(f"Error downloading PDF: {str(e)}")
 
 def get_url_text(url):
     try:
-        pdf_file = download_pdf(url)
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an exception for bad status codes
+
+        # Create a BytesIO object from the content
+        pdf_file = io.BytesIO(response.content)
+
+        # Extract text from the PDF
         text = extract_text_from_pdf(pdf_file)
+
         return text
+    except requests.RequestException as e:
+        return f"Error fetching PDF: {str(e)}"
     except Exception as e:
         return f"Error processing PDF: {str(e)}"
