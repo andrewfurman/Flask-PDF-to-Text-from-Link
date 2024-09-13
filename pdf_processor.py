@@ -6,17 +6,20 @@ def format_markdown_table(table):
     if not table:
         return ""
 
+    # Replace None values with empty strings
+    table = [['' if cell is None else str(cell) for cell in row] for row in table]
+
     # Calculate the maximum width for each column
-    col_widths = [max(len(str(cell)) for cell in col) for col in zip(*table)]
+    col_widths = [max(len(cell) for cell in col) for col in zip(*table)]
 
     # Format the header
-    header = "| " + " | ".join(str(cell).ljust(width) for cell, width in zip(table[0], col_widths)) + " |"
+    header = "| " + " | ".join(cell.ljust(width) for cell, width in zip(table[0], col_widths)) + " |"
     separator = "|" + "|".join("-" * (width + 2) for width in col_widths) + "|"
 
     # Format the rows
     rows = []
     for row in table[1:]:
-        formatted_row = "| " + " | ".join(str(cell).ljust(width) for cell, width in zip(row, col_widths)) + " |"
+        formatted_row = "| " + " | ".join(cell.ljust(width) for cell, width in zip(row, col_widths)) + " |"
         rows.append(formatted_row)
 
     # Combine all parts
