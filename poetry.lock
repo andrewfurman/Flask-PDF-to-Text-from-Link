@@ -356,6 +356,17 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "markdowntable"
+version = "6.0.0"
+description = "Easy way to make markdown code for tables"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "markdowntable-6.0.0-py3-none-any.whl", hash = "sha256:b8810a9347ad6a1ddbd49176e8b9f909aa561124675388936a88527b914ccf49"},
+    {file = "markdowntable-6.0.0.tar.gz", hash = "sha256:3db429e5d02328515880d67122e1c642cba0f5eea470488845d4b00c330198f4"},
+]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.5"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -630,14 +641,31 @@ typing = ["typing-extensions"]
 xmp = ["defusedxml"]
 
 [[package]]
+name = "prettytable"
+version = "3.11.0"
+description = "A simple Python library for easily displaying tabular data in a visually appealing ASCII table format"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "prettytable-3.11.0-py3-none-any.whl", hash = "sha256:aa17083feb6c71da11a68b2c213b04675c4af4ce9c541762632ca3f2cb3546dd"},
+    {file = "prettytable-3.11.0.tar.gz", hash = "sha256:7e23ca1e68bbfd06ba8de98bf553bf3493264c96d5e8a615c0471025deeba722"},
+]
+
+[package.dependencies]
+wcwidth = "*"
+
+[package.extras]
+tests = ["pytest", "pytest-cov", "pytest-lazy-fixtures"]
+
+[[package]]
 name = "py-markdown-table"
-version = "0.1.9"
+version = "0.3.3"
 description = "A package used to generate basic markdown tables from a list of dicts"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "py-markdown-table-0.1.9.tar.gz", hash = "sha256:19b405b64e1cb27a6b071aef4b4b342174bc3e3687844026e3852de08035c86c"},
-    {file = "py_markdown_table-0.1.9-py3-none-any.whl", hash = "sha256:911e11e47c26cc3fac1f8e8add90a9d3a33437bc1237dc6384350c188421d95f"},
+    {file = "py-markdown-table-0.3.3.tar.gz", hash = "sha256:a82b7fb481729a6ac612c611c29b0ce84ad0bc96b6d09a9bb777f543f9c8c917"},
+    {file = "py_markdown_table-0.3.3-py3-none-any.whl", hash = "sha256:fefa8aeb1ce7a89971e633dde89e3890aecf5f7206a6b8c8279820b6fa62d815"},
 ]
 
 [[package]]
@@ -778,6 +806,17 @@ socks = ["pysocks (>=1.5.6,!=1.5.7,<2.0)"]
 zstd = ["zstandard (>=0.18.0)"]
 
 [[package]]
+name = "wcwidth"
+version = "0.2.13"
+description = "Measures the displayed width of unicode strings in a terminal"
+optional = false
+python-versions = "*"
+files = [
+    {file = "wcwidth-0.2.13-py2.py3-none-any.whl", hash = "sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859"},
+    {file = "wcwidth-0.2.13.tar.gz", hash = "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"},
+]
+
+[[package]]
 name = "werkzeug"
 version = "3.0.4"
 description = "The comprehensive WSGI web application library."
@@ -797,4 +836,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10.0,<3.11"
-content-hash = "3dd5051f3beaae0c6d38ee9b66087a5445c3a60b799a1ffa589e7eee07a83042"
+content-hash = "d197e3c25232d5cab85620a4d003dd5b4e96da0d35924f2626a7fe2f72b0c153"
