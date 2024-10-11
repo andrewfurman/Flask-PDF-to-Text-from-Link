@@ -19,3 +19,4 @@ def get_url_text(url):
         return f"Error fetching PDF: {str(e)}"
     except Exception as e:
         return f"Error processing PDF: {str(e)}"
+        
