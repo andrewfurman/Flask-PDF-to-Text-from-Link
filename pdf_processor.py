@@ -1,6 +1,6 @@
 # pdf_processor.py
 import io
-import pdfplumber
+import pdfplumber # MORE EDIT
 
 def format_markdown_table(table):
     if not table:
