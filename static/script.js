@@ -53,8 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => response.json())
         .then(data => {
-            const formattedText = data.text.replace(/\n/g, '<br>');
-            outputArea.innerHTML = formattedText;
+            if (data.text) {
+                const formattedText = data.text.replace(/\n/g, '<br>');
+                outputArea.innerHTML = formattedText;
+            } else {
+                outputArea.textContent = 'Error: ' + (data.error || 'Unknown error');
+            }
             updateCounts();
         })
         .catch((error) => {
